@@ -1,0 +1,9 @@
+{% for route in routes %}
+import {{ route.name|lower }}Routes from './{{ route.name|lower }}/routes/{{ route.name|lower }}.routes';
+{% endfor %}
+
+export default (app) => {
+{% for route in routes %}
+  app.use(`${config.rootUrl}{{ route.url }}`, {{ route.name|lower }}Routes);
+{% endfor %}
+};

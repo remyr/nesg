@@ -1,0 +1,32 @@
+import { Router } from 'express';
+import {
+{% if crud.create %}
+  create{{ modelName|capitalize }},
+{% endif %}
+{% if crud.read %}
+  get{{ modelName|capitalize }},
+{% endif %}
+{% if crud.read %}
+  getAll{{ modelName|capitalize }},
+{% endif %}
+{% if crud.delete %}
+  remove{{ modelName|capitalize }},
+{% endif %}
+} from '../controllers/{{ modelName|lower }}.controller';
+
+const routes = new Router();
+
+{% if crud.create %}
+routes.post('/', create{{ modelName|capitalize }});
+{% endif %}
+{% if crud.read %}
+routes.get('/', getAll{{ modelName|capitalize }});
+{% endif %}
+{% if crud.read %}
+routes.get('/:id', get{{ modelName|capitalize }});
+{% endif %}
+{% if crud.delete %}
+routes.delete('/:id', remove{{ modelName|capitalize }});
+{% endif %}
+
+export default routes;

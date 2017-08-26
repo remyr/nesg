@@ -1,0 +1,16 @@
+{
+  "name": "nesg",
+  "version": "0.1",
+  "main": "cli-index.js",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "rimraf": "^2.6.1",
+    "touch": "^3.1.0",
+    "twig": "^1.10.5"
+  },
+  "bin": {
+    "nesg": "./cli-index.js"
+  },
+  "preferGlobal": true
+}

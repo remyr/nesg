@@ -1,0 +1,53 @@
+import HttpStatus from 'http-status';
+import {{ modelName|capitalize }} from '../models/{{ modelName|lower }}.model';
+
+{% if crud.create %}
+export async function create{{ modelName|capitalize }}(req, res) {
+  try {
+    const item = await {{ modelName|capitalize }}.create(req.body);
+    return res.status(HttpStatus.CREATED).json({ data: item });
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e })
+  }
+}
+{% endif %}
+
+{% if crud.read %}
+export async function getAll{{ modelName|capitalize }}(req, res) {
+  try {
+    const items = await {{ modelName|capitalize }}.find({});
+    return res.status(HttpStatus.OK).json({ data: items });
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e });
+  }
+}
+{% endif %}
+
+{% if crud.read %}
+export async function get{{ modelName|capitalize }}(req, res) {
+  try {
+    const item = await {{ modelName|capitalize }}.findOne({ _id: req.params.id });
+    if (!item) {
+      return res.status(HttpStatus.NOT_FOUND).json({ message: 'No item found' });
+    }
+    return res.status(HttpStatus.OK).json({ data: item });
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e });
+  }
+}
+{% endif %}
+
+{% if crud.delete %}
+export async function remove{{ modelName|capitalize }}(req, res) {
+  try {
+    const item = await {{ modelName|capitalize }}.findById(req.params.id);
+    if (!item) {
+      return res.status(HttpStatus.NOT_FOUND).json({ message: 'No item found' });
+    }
+    await item.remove();
+    return res.sendStatus(HttpStatus.OK);
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e });
+  }
+}
+{% endif %}
