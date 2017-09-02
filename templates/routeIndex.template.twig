@@ -1,9 +1,10 @@
+import config from '../config/constants';
 {% for route in routes %}
-import {{ route.name|lower }}Routes from './{{ route.name|lower }}/routes/{{ route.name|lower }}.routes';
+import {{ route.name|lower }}Routes from './{{ route.module|lower }}/routes/{{ route.name|lower }}.routes';
 {% endfor %}
 
 export default (app) => {
 {% for route in routes %}
-  app.use(`${config.rootUrl}{{ route.url }}`, {{ route.name|lower }}Routes);
+  app.use(`${config.ROOT_URL}{{ route.url }}`, {{ route.name|lower }}Routes);
 {% endfor %}
 };
