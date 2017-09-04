@@ -28,7 +28,13 @@ export async function get{{ modelName|capitalize }}(req, res) {
   try {
     const item = await {{ modelName|capitalize }}.findOne({ _id: req.params.id });
     if (!item) {
-      return res.status(HttpStatus.NOT_FOUND).json({ message: 'No item found' });
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({
+          errors: {
+            message: 'Ressource not found',
+          },
+        });
     }
     return res.status(HttpStatus.OK).json({ data: item });
   } catch (e) {
@@ -42,7 +48,13 @@ export async function remove{{ modelName|capitalize }}(req, res) {
   try {
     const item = await {{ modelName|capitalize }}.findById(req.params.id);
     if (!item) {
-      return res.status(HttpStatus.NOT_FOUND).json({ message: 'No item found' });
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({
+          errors: {
+            message: 'Ressource not found',
+          },
+        });
     }
     await item.remove();
     return res.sendStatus(HttpStatus.OK);

@@ -5,11 +5,21 @@ const { generateModules } = require('./lib/generate-modules');
 
 program
   .version('0.1')
-  .option('modules', 'Generate module from a modules.json file')
+  .option('generate', '[options] Command to generate files')
+  .option('--modules', 'Generate all files for modules defined in modules.json file')
+  .option('--models', 'Create only models files')
+  .option('--controllers', 'Create only controllers files')
+  .option('--routes', 'Create only routes files')
   .option('--overwrite', 'Overwrite modules folder (delete all files)')
   .parse(process.argv);
 
-if (program.modules) {
-  const overwrite = program.overwrite !== undefined;
-  generateModules(overwrite);
+const options = {
+  modules: program.modules !== undefined,
+  models: program.models !== undefined,
+  controllers: program.controllers !== undefined,
+  routes: program.routes !== undefined,
+  overwrite: program.overwrite !== undefined
+};
+if (program.generate) {
+  generateModules(options);
 }
