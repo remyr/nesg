@@ -4,7 +4,7 @@ const program = require('commander');
 const { generateModules } = require('./lib/generate-modules');
 
 program
-  .version('0.1')
+  .version('0.2.1')
   .option('generate', '[options] Command to generate files')
   .option('--modules', 'Generate all files for modules defined in modules.json file')
   .option('--models', 'Create only models files')

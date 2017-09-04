@@ -1,0 +1,20 @@
+{
+  "modulesPath": "src/modules",
+  "modules": [
+    {
+      "name": "client",
+      "models": [
+        {
+          "name": "Client",
+          "url": "/client",
+          "crud": {
+            "create": true,
+            "read": true,
+            "update": true,
+            "delete": true
+          }
+        }
+      ]
+    }
+  ]
+}
