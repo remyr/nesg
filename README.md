@@ -16,6 +16,7 @@ The generator is based on a modules.json file at the root of your project.
     --models                         Generate only models for all modules
     --controllers                    Generate only controlelrs for all modules
     --routes                         Generate only routes for all modules
+    --overwrite                      Overwrite existing files
 
 ### Example
 
