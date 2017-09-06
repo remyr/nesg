@@ -37,6 +37,24 @@ export async function getClient(req, res) {
   }
 }
 
+  export async function updateClient(req, res) {
+  try {
+    const item = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!item) {
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({
+          errors: {
+            message: 'Ressource not found',
+          },
+        });
+    }
+    return res.status(HttpStatus.OK).json({ data: item });
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e });
+  }
+}
+
 export async function removeClient(req, res) {
   try {
     const item = await Client.findById(req.params.id);

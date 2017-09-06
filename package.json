@@ -1,9 +1,13 @@
 {
   "name": "nesg",
-  "version": "0.2.2",
+  "version": "0.4.0",
   "main": "cli-index.js",
   "license": "MIT",
-  "keywords": ["node", "express", "generator"],
+  "keywords": [
+    "node",
+    "express",
+    "generator"
+  ],
   "homepage": "https://github.com/remyr/nesg",
   "repository": {
     "type": "git",

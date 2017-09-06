@@ -43,6 +43,26 @@ export async function get{{ modelName|capitalize }}(req, res) {
 }
 {% endif %}
 
+{% if crud.update %}
+  export async function update{{ modelName|capitalize }}(req, res) {
+  try {
+    const item = await {{ modelName|capitalize }}.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!item) {
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({
+          errors: {
+            message: 'Ressource not found',
+          },
+        });
+    }
+    return res.status(HttpStatus.OK).json({ data: item });
+  } catch (e) {
+    return res.status(HttpStatus.BAD_REQUEST).json({ errors: e });
+  }
+}
+{% endif %}
+
 {% if crud.delete %}
 export async function remove{{ modelName|capitalize }}(req, res) {
   try {

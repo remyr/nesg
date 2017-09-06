@@ -9,6 +9,9 @@ import {
 {% if crud.read %}
   getAll{{ modelName|capitalize }},
 {% endif %}
+{% if crud.update %}
+  update{{ modelName|capitalize }},
+{% endif %}
 {% if crud.delete %}
   remove{{ modelName|capitalize }},
 {% endif %}
@@ -24,6 +27,9 @@ routes.get('/', getAll{{ modelName|capitalize }});
 {% endif %}
 {% if crud.read %}
 routes.get('/:id', get{{ modelName|capitalize }});
+{% endif %}
+{% if crud.update %}
+routes.put('/:id', update{{ modelName|capitalize }});
 {% endif %}
 {% if crud.delete %}
 routes.delete('/:id', remove{{ modelName|capitalize }});
